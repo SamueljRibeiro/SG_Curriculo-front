@@ -1,1 +1,10 @@
 /* app global css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ColorFundo {
+  background-color: #080e1a;
+}
+

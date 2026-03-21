@@ -25,7 +25,7 @@ export default defineConfig((/* ctx */) => {
       // 'themify',
       // 'line-awesome',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
-
+      'mdi-v7',
       'roboto-font', // optional, you are not bound to it
       'material-icons', // optional, you are not bound to it
     ],
@@ -43,7 +43,7 @@ export default defineConfig((/* ctx */) => {
         // extendTsConfig (tsConfig) {}
       },
 
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -99,6 +99,8 @@ export default defineConfig((/* ctx */) => {
 
       // Quasar plugins
       plugins: [],
+
+      iconSet: 'mdi-v7',
     },
 
     // animations: 'all', // --- includes all animations
