@@ -14,7 +14,7 @@ export const schema = yup.object({
 
   conheceu: yup.string().required('Selecione aonde você conheceu a SGBR'),
 
-  curriculo: yup
+  documento: yup
     .mixed<File>()
     .required('Currículo é obrigatório')
     .test('fileType', 'Apenas PDF é permitido', (value?: File) => {

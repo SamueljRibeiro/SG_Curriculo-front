@@ -9,7 +9,6 @@ export const enviarCurriculo = async (formData: FormData) => {
     });
 
     return res.data;
-    
   } catch (error) {
     console.error(error);
   }

@@ -90,15 +90,15 @@
             >
             <div class="flex justify-center">
               <q-file
-                v-model="curriculo"
+                v-model="documento"
                 label="Arraste ou clique para adicionar um arquivo"
                 color="primary"
                 accept=".pdf"
                 rounded
                 outlined
                 dense
-                :error="!!errors.curriculo"
-                :error-message="errors.curriculo"
+                :error="!!errors.documento"
+                :error-message="errors.documento"
                 class="bg-white w-full items-center"
               >
                 <template v-slot:prepend>
@@ -167,7 +167,7 @@ const { handleSubmit, errors, defineField, resetForm, isSubmitting } =
       telefone: '',
       setor: '',
       conheceu: '',
-      curriculo: null,
+      documento: null,
       termos: false,
     },
   });
@@ -177,7 +177,7 @@ const [email] = defineField('email');
 const [telefone] = defineField('telefone');
 const [setor] = defineField('setor');
 const [conheceu] = defineField('conheceu');
-const [curriculo] = defineField('curriculo');
+const [documento] = defineField('documento');
 const [termos] = defineField('termos');
 
 // teste
@@ -190,10 +190,10 @@ const onSubmit = handleSubmit(async (values: typesInterface.FormCurriculo) => {
     formData.append('email', values.email);
     formData.append('telefone', values.telefone);
     formData.append('setor', values.setor);
-    formData.append('conheceu', values.conheceu);
+    formData.append('como_conheceu', values.conheceu);
 
-    if (values.curriculo) {
-      formData.append('documento', values.curriculo);
+    if (values.documento) {
+      formData.append('documento', 'documento.pdf');
     }
 
     await store.curriculoEnviar(formData);

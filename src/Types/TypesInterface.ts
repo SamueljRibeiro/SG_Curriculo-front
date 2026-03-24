@@ -4,6 +4,6 @@ export interface FormCurriculo {
   telefone: string;
   setor: string;
   conheceu: string;
-  curriculo: File | null;
+  documento: File | null;
   termos: boolean;
 }
