@@ -10,7 +10,7 @@ export const schema = yup.object({
 
   telefone: yup.string().required('O telefone é obrigatório').matches(/^\d+$/, 'Apenas números'),
 
-  area: yup.string().required('Selecione uma área'),
+  setor: yup.string().required('Selecione uma área'),
 
   conheceu: yup.string().required('Selecione aonde você conheceu a SGBR'),
 

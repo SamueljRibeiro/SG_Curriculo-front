@@ -47,25 +47,25 @@
 
     <div class="flex items-center justify-center mt-6">
       <nav>
-        <a href="https://www.instagram.com/sgbrsistemas/"
+        <a href="https://www.instagram.com/sgbrsistemas/" target="_blank"
           ><q-btn
             icon="mdi-instagram"
             round
             class="mr-3 hover:scale-[0.95] transition-transform duration-300"
         /></a>
-        <a href="https://www.facebook.com/sgbrsistemas/?locale=pt_BR"
+        <a href="https://www.facebook.com/sgbrsistemas/?locale=pt_BR" target="_blank"
           ><q-btn
             icon="mdi-facebook"
             round
             class="mr-3 hover:scale-[0.95] transition-transform duration-300"
         /></a>
-        <a href="https://br.linkedin.com/company/sgbrsistemas"
+        <a href="https://br.linkedin.com/company/sgbrsistemas" target="_blank"
           ><q-btn
             icon="mdi-linkedin"
             round
             class="mr-3 hover:scale-[0.95] transition-transform duration-300"
         /></a>
-        <a href="https://www.youtube.com/sgbrsistemas"
+        <a href="https://www.youtube.com/sgbrsistemas" target="_blank"
           ><q-btn
             icon="mdi-youtube"
             round

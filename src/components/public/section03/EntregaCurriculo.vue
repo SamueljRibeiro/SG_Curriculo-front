@@ -5,7 +5,7 @@
         <div
           class="flex items-center justify-center shadow-md gap-2 mt-10 md:text-2xl font-semibold rounded-full bg-gradient-to-r text-white from-blue-700 to-blue-500 p-3 w-[60%]"
         >
-          <q-icon class="text-2xl  md:text-4xl " name="mdi-briefcase-outline" />
+          <q-icon class="text-2xl md:text-4xl" name="mdi-briefcase-outline" />
           <p>Trabalhe conosco</p>
         </div>
 
@@ -24,9 +24,7 @@
         </div>
       </div>
       <div>
-        <div
-          class="bg-white p-6 sm:p-10 rounded-2xl  w-[342px] md:w-[450px] mx-auto shadow-md"
-        >
+        <div class="bg-white p-6 sm:p-10 rounded-2xl w-[342px] md:w-[450px] mx-auto shadow-md">
           <q-form @submit.prevent="onSubmit" class="w-full">
             <label class="text-blue-600">Nome <strong class="text-red-600">*</strong></label>
             <q-input
@@ -58,13 +56,13 @@
             />
             <label class="text-blue-600">Aréa<strong class="text-red-600">*</strong></label>
             <q-select
-              v-model="area"
+              v-model="setor"
               :options="areas"
               outlined
               emit-value
               map-options
-              :error="!!errors.area"
-              :error-message="errors.area"
+              :error="!!errors.setor"
+              :error-message="errors.setor"
               label="Selecione uma aréa"
               class="w-full mb-2"
             />
@@ -155,49 +153,59 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate';
 import { schema } from 'src/composable/public/useCurriculo.schemas';
+import { useCandidatoStore } from 'src/stores/public/canditadoStrore';
+import type * as typesInterface from 'src/Types/TypesInterface';
 
-interface FormCurriculo {
-  nome: string;
-  email: string;
-  telefone: string;
-  area: string;
-  conheceu: string;
-  curriculo: File | null;
-  termos: boolean;
-}
+const store = useCandidatoStore();
 
-const { handleSubmit, errors, defineField, resetForm, isSubmitting } = useForm<FormCurriculo>({
-  validationSchema: schema,
-  initialValues: {
-    nome: '',
-    email: '',
-    telefone: '',
-    area: '',
-    conheceu: '',
-    curriculo: null,
-    termos: false,
-  },
-});
+const { handleSubmit, errors, defineField, resetForm, isSubmitting } =
+  useForm<typesInterface.FormCurriculo>({
+    validationSchema: schema,
+    initialValues: {
+      nome: '',
+      email: '',
+      telefone: '',
+      setor: '',
+      conheceu: '',
+      curriculo: null,
+      termos: false,
+    },
+  });
 
 const [nome] = defineField('nome');
 const [email] = defineField('email');
 const [telefone] = defineField('telefone');
-const [area] = defineField('area');
+const [setor] = defineField('setor');
 const [conheceu] = defineField('conheceu');
 const [curriculo] = defineField('curriculo');
 const [termos] = defineField('termos');
 
-
 // teste
 
-const onSubmit = handleSubmit(async (values) => {
-  console.log('Dados válidos:', values);
+const onSubmit = handleSubmit(async (values: typesInterface.FormCurriculo) => {
+  try {
+    const formData = new FormData();
 
-  await new Promise((resolve) => setTimeout(resolve, 1500));
+    formData.append('nome', values.nome);
+    formData.append('email', values.email);
+    formData.append('telefone', values.telefone);
+    formData.append('setor', values.setor);
+    formData.append('conheceu', values.conheceu);
 
-  alert('teste deu certo');
+    if (values.curriculo) {
+      formData.append('documento', values.curriculo);
+    }
 
-  resetForm();
+    await store.curriculoEnviar(formData);
+
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    alert('deu certo');
+
+    resetForm();
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const areas = [
