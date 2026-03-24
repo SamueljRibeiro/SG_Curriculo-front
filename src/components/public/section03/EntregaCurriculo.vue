@@ -38,6 +38,9 @@
             <label class="text-blue-600">Telefone <strong class="text-red-600">*</strong></label>
             <q-input
               v-model="telefone"
+              mask="(##) #####-####"
+              fill-mask
+              unmasked-value
               :error="!!errors.telefone"
               :error-message="errors.telefone"
               outlined
@@ -155,6 +158,7 @@ import { useForm } from 'vee-validate';
 import { schema } from 'src/composable/public/useCurriculo.schemas';
 import { useCandidatoStore } from 'src/stores/public/canditadoStrore';
 import type * as typesInterface from 'src/Types/TypesInterface';
+import { Notify } from 'quasar';
 
 const store = useCandidatoStore();
 
@@ -180,8 +184,6 @@ const [conheceu] = defineField('conheceu');
 const [documento] = defineField('documento');
 const [termos] = defineField('termos');
 
-// teste
-
 const onSubmit = handleSubmit(async (values: typesInterface.FormCurriculo) => {
   try {
     const formData = new FormData();
@@ -200,23 +202,45 @@ const onSubmit = handleSubmit(async (values: typesInterface.FormCurriculo) => {
 
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    alert('deu certo');
+    Notify.create({
+      type: 'positive',
+      message: 'Currículo enviado com sucesso!',
+      position: 'top-right',
+    });
 
     resetForm();
   } catch (error) {
     console.error(error);
+    Notify.create({
+      type: 'negative',
+      message: 'Erro ao enviar currículo!',
+      position: 'top-right',
+    });
   }
 });
 
 const areas = [
-  { label: 'Front-End', value: 'frontend' },
-  { label: 'Back-End', value: 'backend' },
   { label: 'Suporte', value: 'suporte' },
+  { label: 'Auxiliar Administrativo', value: 'auxiliar_administrativo' },
+  { label: 'Marketing', value: 'marketing' },
+  { label: 'Vendas', value: 'vendas' },
+  { label: 'Pedreiro', value: 'pedreiro' },
+  { label: 'Desenvolvedor Back-end', value: 'backend' },
+  { label: 'Desenvolvedor Front-end', value: 'frontend' },
+  { label: 'Desenvolvedor Full Stack', value: 'fullstack' },
+  { label: 'Desenvolvedor Mobile', value: 'mobile' },
+  { label: 'Desenvolvedor Desktop', value: 'desktop' },
+  { label: 'Serviços Gerais', value: 'servicos_gerais' },
 ];
 
 const conheceuS = [
-  { label: 'Front-End', value: 'frontend' },
-  { label: 'Back-End', value: 'backend' },
-  { label: 'Suporte', value: 'suporte' },
+  { label: 'Instagram', value: 'instagram' },
+  { label: 'Facebook', value: 'facebook' },
+  { label: 'LinkedIn', value: 'linkedin' },
+  { label: 'YouTube', value: 'youtube' },
+  { label: 'Google', value: 'google' },
+  { label: 'Indicação de amigos', value: 'amigos' },
+  { label: 'Indicação de familiares', value: 'familiares' },
+  { label: 'Outros', value: 'outros' },
 ];
 </script>
