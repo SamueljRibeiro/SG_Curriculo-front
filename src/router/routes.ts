@@ -10,8 +10,8 @@ const routes: RouteRecordRaw[] = [
   // Rotas Admin
   {
     path: '/login',
-    component: () => import('layouts/AdminLayout.vue'),
-    children: [{ path: '', component: () => import('pages/admin/Login/LoginPage.vue') }],
+    component: () => import('pages/admin/Login/LoginPage.vue'),
+
   },
 
   // Always leave this as last one,
