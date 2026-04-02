@@ -7,12 +7,27 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/PublicLayout.vue'),
     children: [{ path: '', component: () => import('pages/public/HomePage.vue') }],
   },
-  // Rotas Admin
-  {
-    path: '/login',
-    component: () => import('pages/admin/Login/LoginPage.vue'),
 
+
+
+  {
+    path: '/auth',
+    component: () => import('vue-router').then((m) => m.RouterView),
+    children: [
+      {
+        path: 'login', // URL: /auth/login
+        name: 'login',
+        component: () => import('pages/admin/Login/LoginPage.vue'),
+      },
+      {
+        path: 'recuperar', // URL: /auth/recuperar
+        name: 'recuperar-senha',
+        component: () => import('pages/admin/Login/RecuperarPassWordPage.vue'),
+      },
+    ],
   },
+
+  // Rotas Admin
 
   // Always leave this as last one,
   // but you can also remove it

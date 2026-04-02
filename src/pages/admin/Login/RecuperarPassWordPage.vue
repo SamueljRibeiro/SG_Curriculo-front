@@ -2,12 +2,12 @@
   <q-layout view="lHh Lpr lFf" class="bg-gray-50">
     <q-page-container>
       <q-page class="flex flex-center rounded-sm" padding>
-        <login-form />
+        <RecuperarForm />
       </q-page>
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup lang="ts">
-import LoginForm from 'src/components/admin/LoginForm.vue';
+import RecuperarForm from 'src/components/admin/login/RecuperarForm.vue';
 </script>
